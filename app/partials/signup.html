@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <!-- SIGNUP FORM -->
+        <!-- FORM TITLE -->
+        <div class="page-header">
+            <h2 class="text-center"><span class="glyphicon glyphicon-tower"></span> S'inscrire</h2>
+        </div>
+
+        <!-- FORM -->
+        <form ng-submit="form.$valid && main.signup()" name="form">
+            <!-- USERNAME -->
+            <div class="form-group">
+                <label>Nom d'utilisateur</label>
+                <input autocomplete="off" required pattern="^[a-z0-9\_\-]{4,}$" type="text" name="username" ng-model="main.username" class="form-control" placeholder="Batman">
+                <span class="help-block alert alert-danger" ng-show="!form.username.$pristine && (form.username.$error.required || form.username.$error.pattern)">Nom est invalide</span>
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input autocomplete="off" required pattern="^[a-z0-9\_\-]{6,}$" type="password" name="password" ng-model="main.password" class="form-control" placeholder="Min. 6 cars.">
+                <span class="help-block alert alert-danger" ng-show="!form.password.$pristine && (form.password.$error.required || form.password.$error.pattern)">Mot de passe est invalide</span>
+            </div>
+
+            <!-- PASSWORD CONFIRMATION-->
+            <div class="form-group">
+                <label>Confirmation</label>
+                <input autocomplete="off" required pattern="^[a-z0-9\_\-]{6,}$" type="password" name="password2" ng-model="main.confirmation" class="form-control" placeholder="Confirmation" compare-to="main.password">
+                <span class="help-block alert alert-danger" ng-show="form.password2.$invalid && !form.password2.$pristine">Confirmation est invalide</span>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button  ng-disabled="form.$invalid" type="submit" class="btn btn-success btn-lg btn-block">
+                <span class="glyphicon glyphicon-flash"></span> Soumettre
+            </button>
+        </form>
+    </div>
+</div>

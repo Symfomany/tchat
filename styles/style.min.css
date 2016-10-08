@@ -1,0 +1,83 @@
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+img,legend{border:0}
+legend,td,th{padding:0}
+.container,sub,sup{position:relative}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+.block,article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+a{background-color:transparent}
+a:active,a:hover{outline:0}
+abbr[title]{border-bottom:1px dotted}
+b,optgroup,strong{font-weight:700}
+dfn{font-style:italic}
+h1{font-size:2em;margin:.67em 0}
+mark{background:#ff0;color:#000}
+sub,sup{font-size:75%;line-height:0;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+svg:not(:root){overflow:hidden}
+figure{margin:1em 40px}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+pre,textarea{overflow:auto}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}
+button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}
+button{overflow:visible}
+.ir,.overflow-fix{overflow:hidden}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+input{line-height:normal}
+input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}
+input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+table{border-collapse:collapse;border-spacing:0}
+.italic{font-style:italic}
+.hidden{display:none!important}
+.cf:after,.cf:before{content:" ";display:table}
+.cf:after{clear:both}
+.nounderline{text-decoration:none!important}
+.text-left{text-align:left}
+.text-center{text-align:center}
+.text-right{text-align:right}
+.lowercase{text-transform:lowercase!important}
+small{font-size:80%}
+strong{font-weight:600}
+.image-circle{border-radius:50%}
+.image-responsive{max-width:100%;height:auto}
+.pull-left{float:left}
+.pull-right{float:right}
+.hw{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;backface-visibility:hidden;-webkit-perspective:1000;-moz-perspective:1000;-ms-perspective:1000;perspective:1000}
+.last{margin-right:0!important}
+.ir{background-color:transparent;border:0}
+.ir:before{content:"";display:block;width:0;height:150%}
+.text-hide{color:transparent;font-size:0;text-shadow:none;vertical-align:middle}
+.fixed{position:fixed}
+.relative{position:relative}
+.absolute{position:absolute}
+.full-width{width:100%}
+.half-width{width:50%}
+.center{margin:0 auto}
+.smooth{-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-ms-transition:all .2s ease;-o-transition:all .2s ease}
+p{-ms-word-wrap:break-word;word-break:break-word;word-wrap:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;-webkit-hyphenate-before:2;-webkit-hyphenate-after:3;hyphenate-lines:3;-webkit-font-feature-settings:"liga","dlig";-moz-font-feature-settings:"liga=1, dlig=1";-ms-font-feature-settings:"liga","dlig";-o-font-feature-settings:"liga","dlig";font-feature-settings:"liga","dlig"}
+.page.ng-enter{animation:fadeIn 1s}
+.page.ng-leave{animation:fadeOut 1s}
+@media print{blockquote,img,pre,tr{page-break-inside:avoid}
+*{background:0 0!important;color:#000!important;text-shadow:none!important;filter:none!important;-ms-filter:none!important}
+a,a:visited{color:#444!important;text-decoration:underline}
+a:after,a:visited:after{content:" (" attr(href) ")"}
+a abbr[title]:after,a:visited abbr[title]:after{content:" (" attr(title) ")"}
+.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}
+blockquote,pre{border:1px solid #999}
+thead{display:table-header-group}
+img{max-width:100%!important}
+@page{margin:.5cm}
+h2,h3,p{orphans:3;widows:3}
+h2,h3{page-break-after:avoid}
+.page-navigation,.respond-form,.sidebar,.wp-prev-next,nav{display:none}
+}
