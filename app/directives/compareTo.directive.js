@@ -15,6 +15,7 @@
     .module('chat')
     .directive('compareTo', compareTo);
 
+
     function compareTo() {
         return {
             require: "ngModel",

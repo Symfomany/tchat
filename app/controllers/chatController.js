@@ -34,22 +34,20 @@
 		vm.messages = send; 
 		vm.user = storage.get('user');
 
+
 		/**
 		 * Init
 		 */
 		load();
 
 		//console.log(socket);
-		socket.emit('init');
+		//socket.emit('init');
+		socket.emit('ready') 
 
-		socket.on('connect', function () {
-			
-			socket.emit('self:join', {roomName: 'HOT'}, function(data){
-				console.log(data);
-			});
-
-
+		socket.on('messages', null, function(data){
+			console.log(data);
 		});
+	
 
 
 		/**
@@ -86,17 +84,19 @@
 				
 		}
 
+
+
 		/**
 		 * Send a message
 		 */
 		function send(){
 			var now =  new Date(); 
 			var data =  {
-					roomName: "HOT",
-					userName: vm.user,
-					date:  new Date(),
-					time:  new Date().getTime(),
-					message: vm.message
+				roomName: "HOT",
+				userName: vm.user,
+				date:  new Date(),
+				time:  new Date().getTime(),
+				message: vm.message
 			};
 			
 			socket.emit('send:message', data, function(data){
@@ -110,14 +110,10 @@
 				userName: (vm.user) ? (vm.user) : 'Anonyme',
 				date: new Date()
 			});
-			console.log(vm.messages);
 
 			vm.message = "";
-			
-				
 				
 		}
-
 
 		
 

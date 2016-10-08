@@ -17,9 +17,8 @@ Angular Style Guide By John Papa
 *              *
 ****************/
 
-/*
- * Signup route
- */
+### Signup route
+
 // SEND
 POST: 'http://caty.herokuapp.com/signup'
 data: {
@@ -30,9 +29,8 @@ data: {
 // RECEIVE
 'success' || Object
 
-/*
- * Connect route
- */
+
+### Connect route
 // SEND
 POST: 'http://caty.herokuapp.com/connect'
 data: {
@@ -47,32 +45,6 @@ data: {
  */
 // SEND
 GET: 'http://caty.herokuapp.com/disconnect'
-
-
-
-/***********************************
-*                                  *
-* THIS...IS...SOOOOOCKKEEEEETTTTio *
-*                                  *
-*   Just take a look at socketIo   *
-*                                  *
-*      http://socket.io/docs/      *
-*                                  *
-************************************/
-
-// IMPORTANT: version used by server: 1.0.4+
-
-// NOTE: you can connect to 'Public' chatroom
-//       without being connected, crazy right ?! :)
-
-
-
-
-/*
- *
- * Client possible inputs (sent by the server)
- *
- */
 
 // connected (as anonymous or registered)
 'init'
@@ -128,15 +100,7 @@ data: {
 
 
 
-
-
-
-
-/*
- *
- * Client accepted outputs (what you may send to the server)
- *
- */
+### Client accepted outputs (what you may send to the server)
 
 // tell the server you're leaving
 'self:leaving'
@@ -162,8 +126,6 @@ data: {
 // ask nicely the server to change your nickname
 'self:nick'
 data: userName: String
-
-
 
 
 

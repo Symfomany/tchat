@@ -11,9 +11,7 @@
 
   angular
     .module('chat')
-	.constant('URLS', {
-      'API_URL': 'http://caty.herokuapp.com/'
-    })
+
 	.controller('AuthController',AuthController);
 
 
@@ -21,7 +19,6 @@
 
   
   function AuthController($scope,$http,$location, socket, QueryService, storage, toaster, URLS) {
-
 
 		/**
 		 * Virtual Model
@@ -34,12 +31,12 @@
 		vm.signup = signup;
 		vm.user = storage.get('user');
 
-		socket.on('connect', function () {
+		/*socket.on('connect', function () {
 			console.log('connected');		//verify if an user is connected
 			socket.emit('self:join', {roomName: 'hot...'}, function(data){
 					console.log(data);		//verify if an user is connected
 			});
-		});
+		});*/
 
 		
 	
@@ -82,7 +79,6 @@
 
 
 
-
 		/**
 		 * Signup an user && AUtologin
 		 */
@@ -106,8 +102,8 @@
 						$location.path('/chat');
 					});
 
-
-				}else{
+				}
+				else{
 					toaster.error('Erreur :(', response.data);
 				}
 					

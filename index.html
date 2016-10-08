@@ -55,7 +55,7 @@
 
 
         <!-- JQUERY -->
-        <script   src="http://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script   src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
         <!-- Non-angular libraries -->
         <!-- build:libs js/libs.js -->
@@ -74,7 +74,8 @@
 
 
         <!-- SOCKET.IO -->
-        <script src="http://caty.herokuapp.com/socket.io/socket.io.js"></script>
+        <script src="./node_modules/socket.io-client/dist/socket.io.min.js"></script>
+        
 
         <!-- Angular components -->
         <!-- build:appcomponents js/appcomponents.js -->
@@ -85,9 +86,9 @@
         <script type="text/javascript" src="app/factories/localstorageFactory.js"></script>
         <script type="text/javascript" src="app/factories/queryFactory.js"></script>
         <script type="text/javascript" src="app/factories/socketFactory.js"></script>
+	    <script type="text/javascript" src="app/services/toasterService.js"></script>
         <script type="text/javascript" src="app/directives/main.nav.directive.js"></script>
         <script type="text/javascript" src="app/directives/compareTo.directive.js"></script>
-	    <script type="text/javascript" src="app/services/toasterService.js"></script>
         <!-- endbuild -->
 
 
@@ -97,7 +98,6 @@
 
 	    <script type="text/javascript" src="app/controllers/authController.js"></script>
 	    <script type="text/javascript" src="app/controllers/chatController.js"></script>
-
 
     </body>
 </html>
