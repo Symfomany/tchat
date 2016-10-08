@@ -41,7 +41,7 @@
 
 
 	function socketFactory($rootScope) {
-      var socket = io.connect('http://localhost:7076/');
+      var socket = io.connect('http://caty.herokuapp.com/');
       // Emit ready event....
         
       var service = {

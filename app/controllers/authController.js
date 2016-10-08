@@ -1,32 +1,33 @@
-'use strict';
+
 
 /**
  * Main application controller
  *
- * You can use this controller for your whole app if it is small
- * or you can have separate controllers for each logical section
+ * nN globals are left behind.
  * 
  */
 ;(function() {
 
+  'use strict';
+
+
   angular
     .module('chat')
-
 	.controller('AuthController',AuthController);
 
 
-  AuthController.$inject = ['$scope','$http','$location','socket', 'QueryService','storage', 'toaster', 'URLS'];
+  AuthController.$inject = ['$scope','$http','$location','socket', 'QueryFactory','storage', 'toaster', 'URLS'];
 
   
-  function AuthController($scope,$http,$location, socket, QueryService, storage, toaster, URLS) {
+  function AuthController($scope,$http,$location, socket, QueryFactory, storage, toaster, URLS) {
 
 		/**
-		 * Virtual Model
+		 * Virtual Model (scope)
 		 */
 		var vm = this;
 
-		vm.loginFormDatas = {};
-		vm.login = login;
+
+		vm.signin = signin;
 		vm.logout = logout;
 		vm.signup = signup;
 		vm.user = storage.get('user');
@@ -41,11 +42,11 @@
 		
 	
 		/**
-		 * Login User
+		 * Signin User
 		 */
-		function login(){
+		function signin(){
 
-			QueryService
+			QueryFactory
 			.query('POST', 'connect',{username: vm.username, password: vm.password})
 			.then(function(response){
 				console.log(response);
@@ -68,7 +69,7 @@
 		 */
 		function logout () {
 			
-			QueryService
+			QueryFactory
 			.query('GET', 'disconnect')
 			.then(function(response){
 				storage.remove('user')
@@ -84,14 +85,14 @@
 		 */
 		function signup(isValid) {
 
-			QueryService
+			QueryFactory
 			.query('POST', 'signup', {username: vm.username, password: vm.password, password2: vm.confirmation})
 			.then(function(response){
 
 				if (response.data === 'success') {
 					toaster.success( 'Great!',  "Votre compte a bien été crée");
 
-					QueryService
+					QueryFactory
 					.query('POST', 'connect', {'username': vm.username, password: vm.password})
 					.then(function(response){
 						console.log('Vous êtes maintenant inscris !', response);

@@ -14,7 +14,7 @@
     /*
     * Bare bone application
     */
-    var app = angular.module('chat', ['ngAnimate','ngRoute', 'ngSanitize']).config(config);
+    var app = angular.module('chat', ['ngAnimate','ngRoute', 'ngSanitize', 'angular-web-notification']).config(config);
     config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
 
   /**

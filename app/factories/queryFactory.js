@@ -18,8 +18,8 @@
 
   angular
     .module('chat')
-    .factory('QueryService', [
-      '$http', '$q','URLS', QueryService
+    .factory('QueryFactory', [
+      '$http', '$q','URLS', QueryFactory
     ]);
 
 
@@ -28,7 +28,7 @@
 
 
 
-  function QueryService($http, $q, URLS) {
+  function QueryFactory($http, $q, URLS) {
 
 
     var service = {
@@ -51,7 +51,7 @@
           transformRequest: function(obj) {
             var str = [];
             for(var p in obj)
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             return str.join("&");
           },
           headers: {'Content-Type': 'application/x-www-form-urlencoded' }

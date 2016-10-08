@@ -7,19 +7,6 @@
     /**
      * Service for complex localStorage functionality
      *
-     * @category  factory
-     * @author    Jozef Butko
-     * @example   Inject LocalStorage as the dependency and then use it like this:
-     *
-     * var data = { property: 'name'};
-     * // set, get, remove, removeAll and list localStorage values
-     * LocalStorage.set('obj', data);
-     * LocalStorage.get('obj');
-     * LocalStorage.update('obj', data);
-     * LocalStorage.remove('obj');
-     * LocalStorage.removeAll();
-     * LocalStorage.list();
-     *
      * @version   1.0
      *
      */

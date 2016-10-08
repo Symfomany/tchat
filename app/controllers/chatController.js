@@ -16,14 +16,14 @@
     })
 	.controller('ChatController',ChatController);
 
-  ChatController.$inject = ['$scope','$http','socket', 'QueryService','storage', 'toaster', 'URLS'];
+  ChatController.$inject = ['$scope','$http','socket', 'QueryFactory','storage', 'toaster', 'URLS', 'messages'];
 
 
   
-  function ChatController($scope,$http, socket, QueryService,storage, toaster, URLS) {
+  function ChatController($scope,$http, socket, QueryFactory,storage, toaster, URLS, messages) {
+	  console.log(messages);
 
-
-
+	  var messages = messages
 		/**
 		 * Virtual Model
 		 */
@@ -55,32 +55,7 @@
 		 */
 		function load(){
 			
-			vm.messages =  [
-				{
-					id: 1,
-					userName: 'alpha520',
-					content: 'Coucou ! ',
-					date: new Date(2012,1,3)
-				},
-				{
-					id: 2,
-					userName: 'coucou',
-					content: 'Tu vas bien ?',
-					date: new Date(2014,3,5)
-				},
-				{
-					id: 3,
-					userName: 'alpha520',
-					content: 'ça va et toi ?',
-					date: new Date(2015,10,10)
-				},
-				{
-					id: 4,
-					userName: 'coucou',
-					content: 'nikel',
-					date: new Date()
-				},
-			];
+			vm.messages =  messages.data
 				
 		}
 
@@ -100,8 +75,26 @@
 			};
 			
 			socket.emit('send:message', data, function(data){
-				console.log(data);
 			});
+
+			/*webNotification.showNotification(scope.notificationTitle, {
+                    body: scope.notificationText,
+                    onClick: function onNotificationClicked() {
+                        console.log('Notification clicked.');
+                    },
+                    autoClose: 4000 //auto close the notification after 4 seconds (you can manually close it via hide function)
+                }, function onShow(error, hide) {
+                    if (error) {
+                        window.alert('Unable to show notification: ' + error.message);
+                    } else {
+                        console.log('Notification Shown.');
+
+                        setTimeout(function hideNotification() {
+                            console.log('Hiding notification....');
+                            hide(); //manually close the notification (you can skip this if you use the autoClose option)
+                        }, 5000);
+                    }
+			});*/	
 
 			vm.messages.push(
 			{
