@@ -6,11 +6,11 @@
         <!-- CHAT -->
         <!-- FORM TITLE -->
         <div class="page-header">
-            <h2 class="text-center"><span class="glyphicon glyphicon-globe"></span> Chat</h2>
+            <h2 class="text-center"><span class="glyphicon glyphicon-globe"></span> Chat </h2>
         </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><i class="fa fa-comments"></i> Tchat <span class="pull-right"><b>{{ main.nb }} connecté<span ng-show="main.nb">s</span></b></span></div>
+            <div class="panel-heading"><i class="fa fa-comments"></i> {{ main.messages.length }} message<span ng-show="main.nb.length > 0">s</span> <span class="pull-right"><b>{{ main.nb }} connecté<span ng-show="main.nb">s</span></b></span></div>
             <div class="panel-body">
             </div>
 

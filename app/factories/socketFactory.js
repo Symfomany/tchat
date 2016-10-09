@@ -43,14 +43,21 @@
 	function socketFactory($rootScope) {
      // var socket = io.connect('http://caty.herokuapp.com/');
        var socket = io.connect();
-      // Emit ready event....
-        
+
       var service = {
         on: on,
         emit: emit,
+        removeAllListeners: removeAllListeners,
       };
       return service;
 
+
+      /**
+       * Remove all listeners for begin...
+       */
+      function removeAllListeners() {
+        socket.removeAllListeners();
+      }
       
         
       function on(eventName, callback) {

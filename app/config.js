@@ -1,6 +1,5 @@
 ;(function() {
 
-
 	/**
 	 * Place to store API URL or any other constants
 	 * Usage:
@@ -8,7 +7,6 @@
 	 * CONSTANTS.API_URL
 	 */
   angular.module('chat', []).config(config);
-  
 
 
   /**
