@@ -13,33 +13,6 @@
 
 angular.module('chat', ['ngRoute'])
 	   
-		.factory('messagesFactory',['$q','$http', function ($q, $http) {
-				var service = {
-					
-					getMessages: function(){
-
-						var deferred = $q.defer();
-
-						$http({
-							url:  'http://localhost:7076/messages',
-							method: 'GET',
-							}).then(function(response) {
-								console.log(response);
-								deferred.resolve(response);
-							},
-							function(error) {
-							deferred.reject(error);
-						});
-
-						return deferred.promise;
-					}
-				};
-
-
-				return service;
-			
-			}])
-
 	   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 			
 			$locationProvider.html5Mode(false);
@@ -64,8 +37,7 @@ angular.module('chat', ['ngRoute'])
 					controller : 'ChatController',
 					resolve: {
 						messages: function(messagesFactory){
-							console.log(messagesFactory.getMessages())
-							return messagesFactory.messages;
+							return messagesFactory.getMessages();
 						}
 					}
 				})
@@ -75,7 +47,6 @@ angular.module('chat', ['ngRoute'])
 					controller: 'AuthController',
 					resolve: {
 						toaster: function(toaster) {
-							console.log(toaster)
 							return toaster;
 						}
 					}

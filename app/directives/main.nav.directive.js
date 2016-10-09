@@ -23,13 +23,15 @@
       var directiveDefinitionObject = {
         restrict: 'E',
         templateUrl: 'app/directives/main-nav.html',
-        link: function (scope, element, attrs) {
-            scope.logout = function() {
+        link: function ($scope, element, attrs) {
+            $scope.logout = function() {
               storage.remove('user')
+              $scope.user = null;
               $location.path("/signin");
-              scope.user = null;
             };
-            scope.user = storage.get('user');
+            $scope.user = storage.get('user');
+
+           
         }
       };
 

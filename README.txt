@@ -11,6 +11,7 @@
 
 + Angular Style Guide By John Papa
 + Mongo DB with Mongoose & Express for backend
++ Look Nodemon to reboot webserver on change serverside node  available here https://github.com/remy/nodemon
 + Look at RobotMongo here https://robomongo.org/
 
 
@@ -36,6 +37,13 @@ You can start server with
 ``` 
     npm start
 ```
+
+In dev mode, use nodemon
+
+```
+ nodemon app.js
+```
+
 
 ###  Architecture
 

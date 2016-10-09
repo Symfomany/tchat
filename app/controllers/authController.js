@@ -34,6 +34,23 @@
 		 */
 		function signin(){
 
+			socket.emit('signin', {username: vm.username, password: vm.password});
+			
+			socket.on('signin:error',function(data){
+				toaster.error('Erreur :(', data.message);
+			});
+
+			socket.on('signin:success',function(data){
+				storage.set('user', data)
+				toaster.success( 'Great!',  "Bienvenue " + data.username);
+				//$rootScope.$apply() 
+				$location.path('/chat');
+			});
+			
+
+			/*
+			* With QueryFactory & app Heroku http://caty.herokuapp.com/ 
+			*
 			QueryFactory
 			.query('POST', 'connect',{username: vm.username, password: vm.password})
 			.then(function(response){
@@ -46,6 +63,7 @@
 					toaster.error('Mauvais Login/ Mdp', response.data);
 				}
 			});
+			*/
 			
 		}
 
@@ -55,13 +73,20 @@
 		 * Logout User
 		 */
 		function logout () {
+			storage.remove('user')
+			$scope.user = null;
+			$location.path('/signin');
 			
+			/*	
+			* With QueryFactory & app Heroku http://caty.herokuapp.com/ 
+			*
 			QueryFactory
 			.query('GET', 'disconnect')
 			.then(function(response){
 				storage.remove('user')
 				$location.path('/signin');
 			});
+			*/
 			
 		};
 
@@ -72,6 +97,22 @@
 		 */
 		function signup(isValid) {
 
+			socket.emit('signup', {username: vm.username, password: vm.password});
+			
+			socket.on('signup:error',function(data){
+				toaster.error('Erreur :(', data.message);
+			});
+
+			socket.on('signup:success',function(data){
+				toaster.success( 'Great!',  "Bienvenue " + data.username);
+				storage.set('user', data)
+				$location.path('/chat');
+			});
+			
+
+			/*
+			* With QueryFactory & app Heroku http://caty.herokuapp.com/ 
+			*
 			QueryFactory
 			.query('POST', 'signup', {username: vm.username, password: vm.password, password2: vm.confirmation})
 			.then(function(response){
@@ -96,9 +137,13 @@
 				}
 					
 			});
+			*/
 
 	}
 
-  };
+
+
+
+}; //end controlleur
 
 })();

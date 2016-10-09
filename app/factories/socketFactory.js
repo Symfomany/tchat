@@ -41,7 +41,8 @@
 
 
 	function socketFactory($rootScope) {
-      var socket = io.connect('http://caty.herokuapp.com/');
+     // var socket = io.connect('http://caty.herokuapp.com/');
+       var socket = io.connect();
       // Emit ready event....
         
       var service = {
@@ -64,12 +65,8 @@
 
 
       function emit(eventName, data, callback) {
-
-            console.log(eventName, data);
 						socket.emit(eventName, data, function () {
-							
               var args = arguments;
-
 							$rootScope.$apply(function () {
 								if (callback) {
 									callback.apply(socket, args);

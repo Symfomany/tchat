@@ -12,18 +12,50 @@
   angular
     .module('chat')
 	.constant('URLS', {
-      'API_URL': 'http://caty.herokuapp.com/'
+      'API_URL': 'http://caty.herokuapp.com/' // old...
     })
-	.controller('ChatController',ChatController);
+	.controller('ChatController',ChatController)
 
-  ChatController.$inject = ['$scope','$http','socket', 'QueryFactory','storage', 'toaster', 'URLS', 'messages'];
+	.filter('ago',function(){
+		return function(date){
+				if(!date){
+					return moment().locale('fr').fromNow()
+				}
+
+				return moment(date).locale('fr').fromNow(); // 4 years ago
+			};
+	})
+	.filter('words', function () {
+        return function (input, words) {
+            if (isNaN(words)) return input;
+            if (words <= 0) return '';
+            if (input) {
+                var inputWords = input.split(/\s+/);
+                if (inputWords.length > words) {
+                    input = inputWords.slice(0, words).join(' ') + '…';
+                }
+            }
+            return input;
+        };
+    })
+	.filter('titlecase', function() {
+		return function( input ) {
+			return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		}
+	});
+
+	
+
+
+
+
+  ChatController.$inject = ['storage','toaster', 'URLS','socket' ,'messages'];
 
 
   
-  function ChatController($scope,$http, socket, QueryFactory,storage, toaster, URLS, messages) {
-	  console.log(messages);
+  function ChatController(storage, toaster, URLS, socket, messages) {
 
-	  var messages = messages
+
 		/**
 		 * Virtual Model
 		 */
@@ -31,85 +63,44 @@
 
 		vm.loginFormDatas = {};
 		vm.send = send; 
-		vm.messages = send; 
-		vm.user = storage.get('user');
+		vm.messages = messages;  //load from factory resolved with $q
+		vm.nb = 0;
 
+		var userName = storage.get('user') ? storage.get('user').username : "Anonyme";
+		socket.emit('user:add', userName);
 
-		/**
-		 * Init
-		 */
-		load();
-
-		//console.log(socket);
-		//socket.emit('init');
-		socket.emit('ready') 
-
-		socket.on('messages', null, function(data){
-			console.log(data);
+		socket.on('count',function(nb){
+			vm.nb = nb.count
 		});
-	
-
-
-		/**
-		 * Send a message
-		 */
-		function load(){
-			
-			vm.messages =  messages.data
-				
-		}
-
-
 
 		/**
 		 * Send a message
 		 */
 		function send(){
-			var now =  new Date(); 
+			vm.messages.push({userName : userName, content : vm.message})
 			var data =  {
-				roomName: "HOT",
-				userName: vm.user,
-				date:  new Date(),
-				time:  new Date().getTime(),
+				username: userName,
 				message: vm.message
 			};
-			
-			socket.emit('send:message', data, function(data){
+
+			socket.emit('messages:send', data, function(data){});
+
+			socket.on('messages:success',function(message){
+				vm.messages.push(message)
 			});
 
-			/*webNotification.showNotification(scope.notificationTitle, {
-                    body: scope.notificationText,
-                    onClick: function onNotificationClicked() {
-                        console.log('Notification clicked.');
-                    },
-                    autoClose: 4000 //auto close the notification after 4 seconds (you can manually close it via hide function)
-                }, function onShow(error, hide) {
-                    if (error) {
-                        window.alert('Unable to show notification: ' + error.message);
-                    } else {
-                        console.log('Notification Shown.');
-
-                        setTimeout(function hideNotification() {
-                            console.log('Hiding notification....');
-                            hide(); //manually close the notification (you can skip this if you use the autoClose option)
-                        }, 5000);
-                    }
-			});*/	
-
-			vm.messages.push(
-			{
-				id: vm.messages.length,
-				content:  vm.message,
-				userName: (vm.user) ? (vm.user) : 'Anonyme',
-				date: new Date()
+			socket.on('user:joined',function(data){
+				toaster.success('Connecté', data.username + " est connecté");
 			});
 
-			vm.message = "";
-				
+			socket.on('messages:error',function(err){
+				toaster.error( 'OMG', err);
+			});
+
+			vm.message = ""; //empty textarea
 		}
 
 		
-
 
   };
 

@@ -6,7 +6,7 @@
                     <li role="presentation"><a href="#chat">Accéder au chat</a></li>
                     <li ng-hide="user" role="presentation" class="active pull-right"><a href="#signup">S'inscrire</a></li>
                     <li ng-hide="user" role="presentation" class="pull-right"><a href="#signin">Se connecter</a></li>
-                    <li ng-show="user" role="presentation" class="pull-right"> <span class="label label-info">Bonjour {{ user }} !</span> </li>
+                    <li ng-show="user" role="presentation" class="pull-right"> <span class="">Bonjour {{ user.username }} !</span> </li>
                     <li ng-show="user" role="presentation" class="pull-right"> <a ng-click="logout()">Deconnexion</a> </li>
                 </ul>
             </div>

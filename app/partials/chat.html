@@ -10,7 +10,7 @@
         </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Général</div>
+            <div class="panel-heading"><i class="fa fa-comments"></i> Tchat <span class="pull-right"><b>{{ main.nb }} connecté<span ng-show="main.nb">s</span></b></span></div>
             <div class="panel-body">
             </div>
 
@@ -26,8 +26,8 @@
 
         <form name="form" ng-submit="main.send()">
             <div class="form-group">
-                <textarea required pattern=".{3,6}" ng-trim="true" class="form-control" name="message" ng-model="main.message" placeholder="Tapez ici..."></textarea>
-                <span class="help-block alert alert-danger" ng-show="form.message.$invalid && !form.message.$pristine">Confirmation est invalide</span>
+                <textarea required pattern="^.{3,}$" ng-trim="true" class="form-control" name="message" ng-model="main.message" placeholder="Tapez ici..."></textarea>
+                <span class="help-block alert alert-danger" ng-show="form.message.$invalid && !form.message.$pristine">Message invalide...</span>
                 <br>
                 <button  ng-disabled="form.$invalid" type="submit" class="btn btn-success pull-right"><span class="fa fa-pencil"></span> Ecrire</button>
             </div>
