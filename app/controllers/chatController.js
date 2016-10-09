@@ -65,6 +65,11 @@
 		vm.send = send; 
 		vm.messages = messages;  //load from factory resolved with $q
 		vm.nb = 0;
+		vm.typing = typing;
+		vm.stoptyping = stoptyping;
+
+		vm.reactuser = [];
+
 
 		var userName = storage.get('user') ? storage.get('user').username : "Anonyme";
 		socket.emit('user:add', userName);
@@ -72,6 +77,33 @@
 		socket.on('count',function(nb){
 			vm.nb = nb.count
 		});
+
+		socket.on('typing',function(user){
+			if(!_.some(vm.reactuser, { 'username': user.username })){
+				vm.reactuser.push(user);
+			}
+		});
+
+		socket.on('typing:stop',function(user){
+			if(_.some(vm.reactuser, { 'username': user.username })){
+				vm.reactuser = _.reject(vm.reactuser, function(o) { return o.username == user.username });
+			}
+		});
+
+
+		/**
+		 * Typing User with 
+		 */
+		function typing(){
+			socket.emit('typing');
+		}
+
+		/**
+		 * Stop typing User with 
+		 */
+		function stoptyping(){
+			socket.emit('typing:stop');
+		}
 
 		/**
 		 * Send a message

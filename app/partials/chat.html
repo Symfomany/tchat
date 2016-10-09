@@ -10,7 +10,7 @@
         </div>
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><i class="fa fa-comments"></i> {{ main.messages.length }} message<span ng-show="main.nb.length > 0">s</span> <span class="pull-right"><b>{{ main.nb }} connecté<span ng-show="main.nb">s</span></b></span></div>
+            <div class="panel-heading"><i class="fa fa-comments"></i> {{ main.messages.length }} message<span ng-show="main.messages.length">s</span> <span class="pull-right"><b>{{ main.nb }} connecté<span ng-show="main.nb">s</span></b></span></div>
             <div class="panel-body">
             </div>
 
@@ -22,11 +22,13 @@
                 </li>
             </ul>
 
+
         </div>
 
         <form name="form" ng-submit="main.send()">
             <div class="form-group">
-                <textarea required pattern="^.{3,}$" ng-trim="true" class="form-control" name="message" ng-model="main.message" placeholder="Tapez ici..."></textarea>
+                <textarea ng-blur="main.stoptyping()" ng-keyup="main.typing()" required pattern="^.{3,}$" ng-trim="true" class="form-control" name="message" ng-model="main.message" placeholder="Tapez ici..."></textarea>
+                <span class="help-block" ng-show="main.reactuser.length"><b>{{ main.reactuser.length }}</b> reagit</span>
                 <span class="help-block alert alert-danger" ng-show="form.message.$invalid && !form.message.$pristine">Message invalide...</span>
                 <br>
                 <button  ng-disabled="form.$invalid" type="submit" class="btn btn-success pull-right"><span class="fa fa-pencil"></span> Ecrire</button>

@@ -209,8 +209,8 @@ io.on('connection', function (socket) {
   });
 
   // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    socket.broadcast.emit('stop typing', {
+  socket.on('typing:stop', function () {
+    socket.broadcast.emit('typing:stop', {
       username: socket.username
     });
   });
@@ -219,6 +219,8 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function () {
     if (addedUser) {
       --numUsers;
+
+    io.emit('count', { count: numUsers });
 
       // echo globally that this client has left
       socket.broadcast.emit('user:left', {

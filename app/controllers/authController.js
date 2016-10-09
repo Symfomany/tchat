@@ -28,6 +28,7 @@
 		vm.signup = signup;
 		vm.user = storage.get('user');
 
+
 	
 		/**
 		 * Signin User with 
