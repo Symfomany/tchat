@@ -4,8 +4,11 @@
   "description": "/*Okay...RFTM you need*/",
   "main": "app/app.js",
   "dependencies": {
+    "express-session": "^1.14.1",
     "express.io": "^1.1.13",
     "mongoose": "^4.6.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
@@ -41,6 +44,7 @@
     "watch": "^0.13.0"
   },
   "scripts": {
+    "start": "node app",
     "postinstall": "bower install --no-interactive --allow-root"
   },
   "repository": {

@@ -1,143 +1,66 @@
-/**********************************
-*       INSTRUCTIONS MANUAL       *
-* This is all the manual you need *
-*             RTFM !              *
-***********************************/
 
-### Disable CORS
-chromium-browser --disable-web-security
+### Overview
+
+* MEAN App buikt in Node, Angular, Express, SOcket.IO & MongoDB
++ Promises with $q library https://github.com/kriskowal/q
+
+
+
 
 ### Angular Style Guide
-Angular Style Guide By John Papa
+
++ Angular Style Guide By John Papa
++ Mongo DB with Mongoose & Express for backend
++ Look at RobotMongo here https://robomongo.org/
 
 
-/***************
-*              *
-* BASIC ROUTES *
-*              *
-****************/
+### Installation
 
-### Signup route
-
-// SEND
-POST: 'http://caty.herokuapp.com/signup'
-data: {
-	username,
-	password,
-	password2
-}
-// RECEIVE
-'success' || Object
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sudo service mongod start
+npm install && bower install
+```
 
 
-### Connect route
-// SEND
-POST: 'http://caty.herokuapp.com/connect'
-data: {
-	username,
-	password
-}
-// RECEIVE
-'success' || Object
-
-/*
- * Disconnect route
- */
-// SEND
-GET: 'http://caty.herokuapp.com/disconnect'
-
-// connected (as anonymous or registered)
-'init'
-data: {
-	userName: String
-}
-
-// inform reconnection
-'connect'
-
-// inform disconnection
-'disconnect'
-
-// a user left
-'user:leave'
-data: {
-	roomName: String,
-	userName: String
-}
-
-// username change response
-'self:newUsername'
-data: userName: String || null
-
-// some user changed his nick
-'user:newUsername'
-data: {
-	userName: String,
-	newUsername: String
-}
-
-// a user joined a room you're in
-'user:join'
-data: {
-	userName: String,
-	roomName: String
-}
+### Disable CORS for broswer
+chromium-browser --disable-web-security
 
 
-// someone else sent a message in a room you're in
-'send:message'
-data: {
-	roomName: String,
-	userName: String,
-	date: ?,
-	time: ?,
-	message: String
-}
+###  Launch
 
-// let's play ping-pong :)
-'pong'
+You can start server with 
+
+``` 
+    npm start
+```
+
+###  Architecture
+
++ app/: Angular App (config,controllers, directives, factories, partials, services, routing, filters...)
++ bower_components/: Bower Deps (JSS/CSS lib)
++ images/: All images
++ models/: All models to handle collections of Mongo (Active Records)
++ node_modules/: All deps on Node 
++ styles: All Sass & production static stylesheet files
++ index.html: Entry point of App
++ app.js: Serverside wth Node + Express + Mongoose
+
+
+###  Evolution
+
++ Install & configure Webpack
 
 
 
-
-### Client accepted outputs (what you may send to the server)
-
-// tell the server you're leaving
-'self:leaving'
-data: {
-	roomName: String
-}
-
-// let's play ping-pong :)
-'ping'
-
-// ask the server to join a room
-// if the room doesn't exist it may be created (needs basic rights)
-'self:join'
-data: roomName: String
-
-// send your message
-'send:message'
-data: {
-	message: String,
-	roomName: String
-}
-
-// ask nicely the server to change your nickname
-'self:nick'
-data: userName: String
+###  BONUS ZONE 
 
 
-
-
-
-/*************
-* BONUS ZONE *
-*************/
-
--use compass (scss + mixins + compass mixins + ??) => sass + gulp
--use templates => OKAY
--make a nice interface with the css framework you'd like => animate.css
+-use compass sass + gulp
+-use templates 
+-make a nice interface with the css framework you'd like  animate.css
 -use a router (ngRoute or uiRouter)
 -implement custom messages (toastr-like)
 -implement signup/connection/disconnection interface

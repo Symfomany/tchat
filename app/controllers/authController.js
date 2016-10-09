@@ -1,9 +1,5 @@
-
-
 /**
- * Main application controller
- *
- * nN globals are left behind.
+ * Auth controller to handle login, logout etc ...
  * 
  */
 ;(function() {
@@ -32,24 +28,15 @@
 		vm.signup = signup;
 		vm.user = storage.get('user');
 
-		/*socket.on('connect', function () {
-			console.log('connected');		//verify if an user is connected
-			socket.emit('self:join', {roomName: 'hot...'}, function(data){
-					console.log(data);		//verify if an user is connected
-			});
-		});*/
-
-		
 	
 		/**
-		 * Signin User
+		 * Signin User with 
 		 */
 		function signin(){
 
 			QueryFactory
 			.query('POST', 'connect',{username: vm.username, password: vm.password})
 			.then(function(response){
-				console.log(response);
 				if (response.data === 'success') {
 					toaster.success( 'Great!',  "Bienvenue " + vm.userName);
 					storage.set('user', vm.username)
